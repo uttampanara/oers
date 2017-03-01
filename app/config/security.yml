@@ -36,7 +36,6 @@ security:
                 # default is /
                 target: fos_user_security_login
             anonymous:    true
-            post_only:      true
             remember_me:
                 key:      "%secret%"
                 lifetime: 604800 # 1 week in seconds
