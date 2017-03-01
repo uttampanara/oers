@@ -1,0 +1,53 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+                username_parameter: _username
+                password_parameter: _password
+                require_previous_session: false
+                check_path:  /login_check
+                login_path:  /login
+                # if true, forward the user to the login form instead of redirecting
+                use_forward: false
+                always_use_default_target_path: false
+                default_target_path: /
+                target_path_parameter:          _target_path
+                use_referer:                    false
+            logout:
+                # default is /logout
+                path: fos_user_security_logout
+                # default is /
+                target: fos_user_security_login
+            anonymous:    true
+            post_only:      true
+            remember_me:
+                key:      "%secret%"
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+            switch_user:
+                provider:             ~
+                parameter:            _switch_user
+                role:                 ROLE_ALLOWED_TO_SWITCH
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
