@@ -8,13 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    {% block stylesheets %}{% endblock %}
-
     <title>{% block title %}Something Clever Here!{% endblock %}</title>
 
-
+    <link rel="stylesheet" href="{{ asset('css/my-style.css') }}">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    {% block stylesheets %}{% endblock %}
     <!-- Latest compiled and minified JavaScript -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -30,7 +29,7 @@
   {% include '::topnav.html.twig' %}
 {% endblock %}
 
-<div class="container">
+<div class="container mainBlock">
     {% block content %}{% endblock %}
 </div>
 

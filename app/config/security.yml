@@ -30,6 +30,22 @@ security:
                 default_target_path: /
                 target_path_parameter:          _target_path
                 use_referer:                    false
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                # csrf_provider: form.csrf_provider
+                username_parameter: _username
+                password_parameter: _password
+                require_previous_session: false
+                check_path:  /login_check
+                login_path:  /login
+                # if true, forward the user to the login form instead of redirecting
+                use_forward: false
+                always_use_default_target_path: false
+                default_target_path: /
+                target_path_parameter:          _target_path
+                use_referer:                    false
             logout:
                 # default is /logout
                 path: fos_user_security_logout

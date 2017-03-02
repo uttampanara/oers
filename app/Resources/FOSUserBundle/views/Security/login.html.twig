@@ -19,7 +19,7 @@
 
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Email address" class="form-control" required autofocus />
+        <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Email address" class="form-control" required autofocus /><br>
         <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
         <input type="password" id="password" name="_password" class="form-control" placeholder="Password" required />
         <div class="checkbox">
@@ -35,6 +35,7 @@
                id="_submit"
                name="_submit"
                value="{{ 'security.login.submit'|trans }}" />
+        <a href="/en/register" class="btn btn-lg btn-success btn-block">Signup</a>
     </form>
 
 {% endblock fos_user_content %}
